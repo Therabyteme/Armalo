@@ -9,5 +9,19 @@ namespace APIARMALO.Controllers
 {
     public class FuncionesController : ApiController
     {
+        public void AgregarEvento() //metodo que consume el api para agregar eventos
+        {
+        }
+
+        public void RegistrarUsuario() //metodo que consume el api para crear usuarios
+        {
+
+        }
+
+        public void Moderar() //metodo que consume el api para moderar eventos
+        {
+
+        }
+
     }
 }
