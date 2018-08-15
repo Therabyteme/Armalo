@@ -11,6 +11,8 @@ namespace APIARMALO.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            ConectarBD cc = new ConectarBD();
+            cc.Connectar();
 
             return View();
         }

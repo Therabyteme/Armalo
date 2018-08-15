@@ -10,48 +10,7 @@ namespace APIARMALO.Controllers
 {
     public class ConectarBD
     {
-        /*  private ConectarBD()
-          {
-
-          }
-          private string databaseName = string.Empty;
-          public string DatabaseName
-          {
-              get { return databaseName; }
-              set { databaseName = value; }
-          }
-
-          public string Password { get; set; }
-          private MySqlConnection connection = null;
-          public MySqlConnection Connection
-          {
-              get { return connection; }
-          }
-          private static ConectarBD _instance = null;
-          public static ConectarBD Instance()
-          {
-              if (_instance == null)
-                  _instance = new ConectarBD();
-              return _instance;
-          }
-          public bool IsConnect()
-          {
-              if(Connection == null)
-              {
-                  if (String.IsNullOrEmpty(databaseName))
-                      return false;
-                  string connstring = string.Format("",databaseName);
-                  connection = new MySqlConnection(connstring);
-                  connection.Open();
-
-              }
-              return true;
-          }
-          public void Close()
-          {
-              connection.Close();
-          }*/
-    public ConectarBD()
+    public string Connectar()
         {
             //Metodo para definir la conexion con la base de datos de armalo
             string conexion = "server = localhost;database = armalo;uid=root;pwd=Sadie1996;";
@@ -68,7 +27,9 @@ namespace APIARMALO.Controllers
             {
                 System.Diagnostics.Debug.WriteLine("No se pudo conectar");
             }
+            return "a";
         }
+        
 
     }
     
