@@ -9,7 +9,7 @@ namespace APIARMALO.Models
 {
     public class Servicios
     {
-        MySql.Data.MySqlClient.MySqlConnection conn = new MySqlConnection();
+       
         public String Host { get; set; }
         public String Port { get; set; }
         public String InsertUser { get; set; }
@@ -20,26 +20,34 @@ namespace APIARMALO.Models
         public String UpdateUserPwd { get; set; }
         public String SelectUserPwd { get; set; }
 
-      /*  public string evento()
+        
+        public void verevento()
         {
-            string evento = "";
-            MySqlCommand cmd = conn.CreateCommand();
-            conn.CommandText = "SELECT * FROM armalo.eventos;"+evento;
+            string Conexion = "server = localhost;database = armalo;uid=root;pwd=Sadie1996;";
+            string Query = "select * from armalo.evento;";
+            MySqlConnection conn = new MySqlConnection(Conexion);
+            MySqlCommand cmd = new MySqlCommand(Query, conn);
 
-            try
-            {
-                conn.Open();
-            } catch(Exception ex)
-            {
-                
-            }
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
+            MySqlDataAdapter adaptador = new MySqlDataAdapter();
+            adaptador.SelectCommand = cmd;
+            
 
-            }
-            return evento;
-        }*/
+
+            
+        }
+        public HistoriaCliente listacliente(string ID_USR, string ID_EVENT)
+        {
+            string Conexion = "server = localhost;database = armalo;uid=root;pwd=Sadie1996;";
+            string Query = "select * from armalo.historia_de_eventos_usuario;";
+            MySqlConnection conn = new MySqlConnection(Conexion);
+            Status st = new Status();
+            HistoriaCliente cli = new HistoriaCliente();
+            MySqlCommand cmd = new MySqlCommand(Query, conn);
+            MySqlDataAdapter adaptador = new MySqlDataAdapter();
+            adaptador.SelectCommand = cmd;
+
+            return listacliente(ID_USR, ID_EVENT);
+        }
 
     }
 }
