@@ -28,6 +28,7 @@ CREATE TABLE `usuarios` (
   `TipoUSR` int(11) NOT NULL,
   `Nombre_USR` varchar(45) NOT NULL,
   `Pass` varchar(45) NOT NULL,
+  `Correo` varchar (200) NOT NULL,
   PRIMARY KEY (`ID_USR`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
