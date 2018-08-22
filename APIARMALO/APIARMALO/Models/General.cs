@@ -24,5 +24,10 @@ namespace APIARMALO.Models
         public string usuario { get; set; }
         [JsonProperty(PropertyName = "contrasena")]
         public string contrasena { get; set; }
+        [JsonProperty(PropertyName = "correo")]
+        public string correo { get; set; }
+        [JsonProperty(PropertyName = "nivel")]
+        public string nivel { get; set; }
     }
+
 }
