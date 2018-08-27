@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using APIARMALO.Models;
 
 namespace APIARMALO.Models
 {
@@ -35,7 +36,7 @@ namespace APIARMALO.Models
 
             
         }
-        public HistoriaCliente listacliente(string ID_USR, string ID_EVENT)
+        public HistoriaCliente listacliente(string ID_USR)
         {
             string Conexion = "server = localhost;database = armalo;uid=root;pwd=Sadie1996;";
             string Query = "select * from armalo.historia_de_eventos_usuario;";
@@ -46,8 +47,30 @@ namespace APIARMALO.Models
             MySqlDataAdapter adaptador = new MySqlDataAdapter();
             adaptador.SelectCommand = cmd;
 
-            return listacliente(ID_USR, ID_EVENT);
-        }
+            try
+            {
+                conn.Open();
+            }
+            catch
+            {
+                try
+                {
+                    conn.Close();
+                }
+                catch
+                {
 
+                }
+                cli.ID_USR = "";
+                cli.ID_EVENT = "";
+                st.mensaje = "Error en la conexión con la base de datos";
+                return listacliente(ID_USR);
+            }
+            return listacliente(ID_USR);
+        }
+        public HistoriaOrador listaorador(string USR_ID)
+        {
+
+        }
     }
 }
