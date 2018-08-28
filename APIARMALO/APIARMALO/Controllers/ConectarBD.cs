@@ -10,8 +10,9 @@ namespace APIARMALO.Controllers
 {
     public class ConectarBD
     {
-    public string Connectar()
-        {
+        public static ConectarBD instance = null;
+
+        private ConectarBD(){
             //Metodo para definir la conexion con la base de datos de armalo
             string conexion = "server = localhost;database = armalo;uid=root;pwd=Sadie1996;";
             MySqlConnection conn = new MySqlConnection(conexion);
@@ -27,10 +28,16 @@ namespace APIARMALO.Controllers
             {
                 System.Diagnostics.Debug.WriteLine("No se pudo conectar");
             }
-            return "a";
         }
-        
-
+        public static ConectarBD Connectar()
+        {
+                
+            if (instance==null)
+            {
+                instance = new ConectarBD();
+            }
+            return instance;
+        }
     }
     
 }
