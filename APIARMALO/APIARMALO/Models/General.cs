@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MySql.Data;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
+using System.Data.Entity;
 
 namespace APIARMALO.Models
 {
     public class General
     {
+        
+    }
+    public class Conexion : DbContext
+    {
+        public Conexion() : base(nameOrConnectionString: "armalo")
+        { }
+            public virtual DbSet<Servicios> Servicios {get; set;}
+        
     }
     public class Status
     {
@@ -121,4 +130,6 @@ namespace APIARMALO.Models
         [JsonProperty(PropertyName ="ID_EVENT")]
         public int ID_EVENT { get; set; }
     }
+
+   
 }

@@ -70,7 +70,7 @@ namespace APIARMALO.Models
         }
         public HistoriaOrador listaorador(string USR_ID)
         {
-
+            return listaorador;
         }
     }
 }
