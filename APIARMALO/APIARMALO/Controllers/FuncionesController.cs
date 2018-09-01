@@ -34,7 +34,7 @@ namespace APIARMALO.Controllers
         [Route ("/Usuario/HistoriaUser"),HttpGet]
         public ActionResult MostrarHistoriaCliente() //metodo que consume el api para mostrar los eventos a los que fue el usuario anteriormente
         {
-            ConectarBD con = new ConectarBD();
+            ConectarBD con = ConectarBD.Connectar();
             HistoriaCliente cli = new HistoriaCliente();
 
             var ID_USR = Request.Headers["ID_USR"].ToString();

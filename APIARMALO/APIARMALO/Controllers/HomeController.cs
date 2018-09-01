@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace APIARMALO.Controllers
 {
@@ -11,8 +7,7 @@ namespace APIARMALO.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            ConectarBD cc = new ConectarBD();
-            cc.Connectar();
+            ConectarBD cc = ConectarBD.Connectar();
 
             return View();
         }
