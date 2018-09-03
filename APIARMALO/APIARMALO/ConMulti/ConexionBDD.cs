@@ -3,22 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using APIARMALO.Models;
+using MySql.Data.MySqlClient;
+using APIARMALO.Models;
 
 namespace APIARMALO.ConMulti
 {
-    public class ConexionBDD : IConexionBDD
+    
+
+    public class ConexionBDD : IUsuariosBDD
     {
+        static MySqlConnection db = null;
+        public static MySqlConnection Conectar()
+        {
+            if(db == null)
+            {
+                
+                
+            }
+            return db;
+           
+        }
         static List<Evento> Eventos = new List<Evento>();
         static List<Agenda> Agendas = new List<Agenda>();
-        static List<Usuarios> Usuarios = new List<Usuarios>();
+        static List<Usuarios> Usuariosl = new List<Usuarios>();
         static List<Historia_de_eventos_org> histo1 = new List<Historia_de_eventos_org>();
         static List<Historia_de_eventos_usr> histo2 = new List<Historia_de_eventos_usr>();
         static List<Publicidad> Publicidads = new List<Publicidad>();
         static List<Staff> Staffs = new List<Staff>();
         static List<Lista_de_asistentes> Listas = new List<Lista_de_asistentes>();
-        public void Agregar_Evento(Evento evento)
+        public bool Agregar_Evento(Evento evento)
         {
-            Eventos.Add(evento);
+            
         }
         public void Agregar_Agenda(Agenda agenda)
         {
@@ -42,7 +57,7 @@ namespace APIARMALO.ConMulti
         }
         public void Agregar_Usuarios(Usuarios usuarios)
         {
-            Usuarios.Add(usuarios);
+            Usuariosl.Add(usuarios);
         }
         public void Agregar_Publicidad(Publicidad publicidad)
         {
@@ -61,7 +76,7 @@ namespace APIARMALO.ConMulti
         }
         public IEnumerable<Usuarios> GetUsuarios()
         {
-            return Usuarios;
+            return Usuariosl;
         }
         public IEnumerable<Staff> GetStaffs()
         {
@@ -82,6 +97,21 @@ namespace APIARMALO.ConMulti
         public IEnumerable<Historia_de_eventos_usr> GetHistoria_De_Eventos_Usrs()
         {
             return histo2;
+        }
+
+        public Usuarios Find(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Evento evento)
+        {
+            throw new NotImplementedException();
         }
     }
 }
