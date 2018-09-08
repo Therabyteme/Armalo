@@ -1,0 +1,15 @@
+# Visual Studio 2015/2017 cache/options directory
+APIARMALO/.vs/
+
+
+# Build results
+APIARMALO/[Dd]ebug/
+APIARMALO/[Dd]ebugPublic/
+APIARMALO/[Rr]elease/
+APIARMALO/[Rr]eleases/
+APIARMALO/x64/
+APIARMALO/x86/
+APIARMALO/bld/
+APIARMALO/[Bb]in/
+APIARMALO/[Oo]bj/
+APIARMALO/[Ll]og/
