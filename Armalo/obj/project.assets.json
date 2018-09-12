@@ -12315,23 +12315,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\el_an\\.nuget\\packages\\": {},
+    "C:\\Users\\Brandon\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\el_an\\source\\repos\\Armalo\\Armalo\\Armalo.csproj",
+      "projectUniqueName": "C:\\Users\\Brandon\\armalo\\Armalo\\Armalo.csproj",
       "projectName": "Armalo",
-      "projectPath": "C:\\Users\\el_an\\source\\repos\\Armalo\\Armalo\\Armalo.csproj",
-      "packagesPath": "C:\\Users\\el_an\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\el_an\\source\\repos\\Armalo\\Armalo\\obj\\",
+      "projectPath": "C:\\Users\\Brandon\\armalo\\Armalo\\Armalo.csproj",
+      "packagesPath": "C:\\Users\\Brandon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Brandon\\armalo\\Armalo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\el_an\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Brandon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
