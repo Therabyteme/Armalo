@@ -12,3 +12,17 @@ C:\Users\el_an\source\repos\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.Assembl
 C:\Users\el_an\source\repos\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.RazorTargetAssemblyInfo.cache
 C:\Users\el_an\source\repos\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.dll
 C:\Users\el_an\source\repos\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.pdb
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.csprojAssemblyReference.cache
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.csproj.CoreCompileInputs.cache
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.RazorAssemblyInfo.cache
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.RazorAssemblyInfo.cs
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.AssemblyInfoInputs.cache
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.AssemblyInfo.cs
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.dll
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.pdb
+C:\Users\Brandon\armalo\Armalo\bin\Debug\netcoreapp2.1\Armalo.deps.json
+C:\Users\Brandon\armalo\Armalo\bin\Debug\netcoreapp2.1\Armalo.runtimeconfig.json
+C:\Users\Brandon\armalo\Armalo\bin\Debug\netcoreapp2.1\Armalo.runtimeconfig.dev.json
+C:\Users\Brandon\armalo\Armalo\bin\Debug\netcoreapp2.1\Armalo.dll
+C:\Users\Brandon\armalo\Armalo\bin\Debug\netcoreapp2.1\Armalo.pdb
+C:\Users\Brandon\armalo\Armalo\obj\Debug\netcoreapp2.1\Armalo.RazorTargetAssemblyInfo.cache
