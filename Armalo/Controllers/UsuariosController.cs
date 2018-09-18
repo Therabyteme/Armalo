@@ -24,7 +24,7 @@ namespace Armalo.Controllers
         [HttpGet]
         public IEnumerable<Usuarios> GetUsuarios()
         {
-            return _context.Usuarios;
+            return _context.Usuarios.ToList();
         }
 
         // GET: api/Usuarios/5

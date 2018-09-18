@@ -34,10 +34,13 @@ namespace Armalo
                 options => options.UseMySql(DotNetEnv.Env.GetString("CONECTION_STRING"), // replace with your Connection String
                     mysqlOptions =>
                     {
-                        mysqlOptions.ServerVersion(new Version(8, 0, 12), ServerType.MySql); // replace with your Server Version and Type
+                        mysqlOptions.ServerVersion(new Version(5, 7, 0), ServerType.MySql); // replace with your Server Version and Type
                     }
             ));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(
+            options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            ).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
