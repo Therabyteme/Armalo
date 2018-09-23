@@ -1,117 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+using System.Threading.Tasks;
+
 namespace Armalo.Controllers
 {
-    [Route("api/account/")]
+    [Route("api/[controller]")]
+    [ApiController]
     public class AccountController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IConfiguration _configuration;
-
-        public AccountController(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
-            IConfiguration configuration
-            )
+        public async Task Login(string returnUrl = "/")
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _configuration = configuration;
-        }
-
-        [HttpPost]
-        [Route("/api/account/login/")]
-        public async Task<object> Login([FromBody] LoginDto model)
-        {
-            var result = await _signInManager.PasswordSignInAsync(model.Usuario, model.Contrasena, false, false);
-
-            if (result.Succeeded)
+            await HttpContext.ChallengeAsync("Auth0", new AuthenticationProperties() { RedirectUri = returnUrl });
+            if (User.Identity.IsAuthenticated)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.Usuario);
-                return await GenerateJwtToken(model.Usuario, appUser);
+                string accessToken = await HttpContext.GetTokenAsync("access_token");
+                string idToken = await HttpContext.GetTokenAsync("id_token");
+
+                // Now you can use them. For more info on when and how to use the
+                // Access Token and ID Token, see https://auth0.com/docs/tokens
             }
-
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
         }
-        
-        [HttpPost]
-        [Route("/api/account/register/")]
-        public async Task<object> Register([FromBody] RegisterDto model)
+
+        [Authorize]
+        public async Task Logout()
         {
-            var user = new IdentityUser
+            await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties
             {
-                UserName = model.Usuario,
-                Email = model.Email,
-               
-            };
-            var result = await _userManager.CreateAsync(user, model.Contrasena);
-
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return await GenerateJwtToken(model.Email, user);
-            }
-            else
-            {
-                throw new ApplicationException("UNKNOWN_ERROR");
-            }
-            
+                // Indicate here where Auth0 should redirect the user after a logout.
+                // Note that the resulting absolute Uri must be whitelisted in the 
+                // **Allowed Logout URLs** settings for the client.
+                RedirectUri = Url.Action("Index", "Home")
+            });
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
-        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));
-
-            var token = new JwtSecurityToken(
-                _configuration["JwtIssuer"],
-                _configuration["JwtIssuer"],
-                claims,
-                expires: expires,
-                signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-        
-        public class LoginDto
-        {
-            [Required]
-            public string Usuario { get; set; }
-
-            [Required]
-            public string Contrasena { get; set; }
-
-        }
-        
-        public class RegisterDto
-        {
-            [Required]
-            public string Email { get; set; }
-            [Required]
-            public string Usuario { get; set; }
-            [Required]
-            [StringLength(100, ErrorMessage = "PASSWORD_MIN_LENGTH", MinimumLength = 6)]
-            public string Contrasena { get; set; }
-        }
     }
 }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Armalo.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Armalo.Controllers
 {
@@ -28,7 +30,7 @@ namespace Armalo.Controllers
         }
 
         // GET: api/Usuarios/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<IActionResult> GetUsuarios([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -82,7 +84,7 @@ namespace Armalo.Controllers
         }
 
         // POST: api/Usuarios
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<IActionResult> PostUsuarios([FromBody] Usuarios usuarios)
         {
             if (!ModelState.IsValid)

@@ -18,8 +18,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
-using Armalo.Entities;
-
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Armalo
 {
@@ -44,42 +45,47 @@ namespace Armalo
                         mysqlOptions.ServerVersion(new Version(5, 7, 0), ServerType.MySql); // replace with your Server Version and Type
                     }
             ));
-            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddMvc().AddJsonOptions(
-                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
-            // add dbcontext
-            //services.AddDbContext<ApplicationDbContext>();
-            //add identity
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ArmaloContext>()
-                .AddDefaultTokenProviders();
-            //add authentication
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // remove default claims
+
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(cfg =>
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+    .AddCookie()
+    .AddOpenIdConnect("Auth0", options =>
+    {
+        // ...
+        options.SaveTokens = true;
+        options.Events = new OpenIdConnectEvents
+        {
+            // handle the logout redirection
+            OnRedirectToIdentityProviderForSignOut = (context) =>
             {
-                cfg.RequireHttpsMetadata = false;
-                cfg.SaveToken = true;
-                cfg.TokenValidationParameters = new TokenValidationParameters
+                var logoutUri = $"https://{Configuration["Auth0:Domain"]}/v2/logout?client_id={Configuration["Auth0:ClientId"]}";
+
+                var postLogoutUri = context.Properties.RedirectUri;
+                if (!string.IsNullOrEmpty(postLogoutUri))
                 {
-                    ValidIssuer = Configuration["JwtIssuer"],
-                    ValidAudience = Configuration["JwtIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
-                    ClockSkew = TimeSpan.Zero //remove delay of token when expire
-                };
-            });
+                    if (postLogoutUri.StartsWith("/"))
+                    {
+                        // transform to absolute
+                        var request = context.Request;
+                        postLogoutUri = request.Scheme + "://" + request.Host + request.PathBase + postLogoutUri;
+                    }
+                    logoutUri += $"&returnTo={ Uri.EscapeDataString(postLogoutUri)}";
+                }
 
-            //add mvc
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                context.Response.Redirect(logoutUri);
+                context.HandleResponse();
+
+                return Task.CompletedTask;
+            }
+        };
+    });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -87,11 +93,24 @@ namespace Armalo
             }
             else
             {
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseAuthentication();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
+
     }
 }
+
