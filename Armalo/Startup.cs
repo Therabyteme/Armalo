@@ -10,33 +10,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Armalo
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration,IHostingEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
         }
-
+        public IHostingEnvironment HostingEnvironment { get; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             DotNetEnv.Env.Load();
             // other service configurations go here
             services.AddDbContextPool<ArmaloContext>( // replace "YourDbContext" with the class name of your DbContext
@@ -46,6 +44,11 @@ namespace Armalo
                         mysqlOptions.ServerVersion(new Version(5, 7, 0), ServerType.MySql); // replace with your Server Version and Type
                     }
             ));
+            services.Configure<CookiePolicyOptions>(options =>
+                {
+                    options.CheckConsentNeeded = context => HostingEnvironment.IsProduction();
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
             services.AddAuthentication(options =>
             {
@@ -56,7 +59,15 @@ namespace Armalo
     .AddCookie()
     .AddOpenIdConnect("Auth0", options =>
     {
-        // ...
+        options.Authority = $"https://{Configuration["Auth0:Domain"]}";
+        options.ClientId = Configuration["Auth0:ClientId"];
+        options.ClientSecret = Configuration["Auth0:ClientSecret"];
+        options.ResponseType = "code";
+        options.Scope.Clear();
+        options.Scope.Add("openid");
+        options.CallbackPath = new PathString("/signin-auth0");
+        options.ClaimsIssuer = "Auth0";
+
         options.SaveTokens = true;
         options.Events = new OpenIdConnectEvents
         {
