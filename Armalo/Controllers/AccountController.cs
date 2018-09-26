@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Armalo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/Login")]
     [ApiController]
     public class AccountController : Controller
     {
@@ -23,7 +23,7 @@ namespace Armalo.Controllers
                 // Access Token and ID Token, see https://auth0.com/docs/tokens
             }
         }
-
+        [Route("api/[controller]/Logout")]
         [Authorize]
         public async Task Logout()
         {
