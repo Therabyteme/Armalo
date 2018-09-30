@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "Armalo/1.0.0": {
+      "Armalo/1.1.2": {
         "dependencies": {
           "AutoMapper": "7.0.1",
           "DotNetEnv": "1.2.0",
@@ -3664,7 +3664,7 @@
     }
   },
   "libraries": {
-    "Armalo/1.0.0": {
+    "Armalo/1.1.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

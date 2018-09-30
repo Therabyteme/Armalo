@@ -30,7 +30,7 @@ namespace Armalo.Controllers
         }
 
         // GET: api/Usuarios/5
-        [HttpGet("{id}"), Authorize]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetUsuarios([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -84,7 +84,7 @@ namespace Armalo.Controllers
         }
 
         // POST: api/Usuarios
-        [HttpPost, Authorize]
+        [HttpPost]
         public async Task<IActionResult> PostUsuarios([FromBody] Usuarios usuarios)
         {
             if (!ModelState.IsValid)
