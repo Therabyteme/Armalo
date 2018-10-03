@@ -120,6 +120,7 @@ namespace Armalo
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Values}/{id?}");
+                
             });
         }
 

@@ -11,13 +11,17 @@ namespace Armalo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EventosController : ControllerBase
+    public class Database : ControllerBase
     {
         private readonly ArmaloContext _context;
 
-        public EventosController(ArmaloContext context)
+        public Database(ArmaloContext context)
         {
             _context = context;
+        }
+
+        public Database()
+        {
         }
 
         // GET: api/Eventos
