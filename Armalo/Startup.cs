@@ -108,7 +108,9 @@ namespace Armalo
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            //cors
+            app.UseCors(builder =>
+            builder.WithOrigins("http://localhost:50365").AllowAnyHeader());
            
             app.UseStaticFiles();
             app.UseCookiePolicy();
