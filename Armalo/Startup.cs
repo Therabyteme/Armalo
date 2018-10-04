@@ -110,7 +110,7 @@ namespace Armalo
             }
             //cors
             app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:50365").AllowAnyHeader());
+            builder.WithOrigins("http://localhost:8100").AllowAnyHeader());
            
             app.UseStaticFiles();
             app.UseCookiePolicy();
