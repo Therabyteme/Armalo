@@ -59,7 +59,7 @@ namespace Armalo
     .AddCookie()
     .AddOpenIdConnect("Auth0", options =>
     {
-        options.Authority = $"https://{Configuration["Auth0:Domain"]}";
+       /* options.Authority = $"https://{Configuration["Auth0:Domain"]}";
         options.ClientId = Configuration["Auth0:ClientId"];
         options.ClientSecret = Configuration["Auth0:ClientSecret"];
         options.ResponseType = "code";
@@ -93,7 +93,7 @@ namespace Armalo
 
                 return Task.CompletedTask;
             }
-        };
+        };*/
     });
         }
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
