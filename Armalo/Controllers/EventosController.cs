@@ -9,7 +9,7 @@ using Armalo.Models;
 
 namespace Armalo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/evento")]
     [ApiController]
     public class Database : ControllerBase
     {
@@ -20,15 +20,13 @@ namespace Armalo.Controllers
             _context = context;
         }
 
-        public Database()
-        {
-        }
+       
 
         // GET: api/Eventos
         [HttpGet]
         public IEnumerable<Evento> GetEvento()
         {
-            return _context.Evento;
+            return _context.Evento.ToList();
         }
 
         // GET: api/Eventos/5

@@ -30,7 +30,7 @@ namespace Armalo.Controllers
 
         // GET: api/Usuarios
         [HttpGet]
-        [Authorize]
+       
         public IEnumerable<Usuarios> GetUsuarios()
         {
             
