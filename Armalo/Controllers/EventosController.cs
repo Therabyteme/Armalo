@@ -24,8 +24,16 @@ namespace Armalo.Controllers
 
         // GET: api/Eventos
         [HttpGet]
-        public IEnumerable<Evento> GetEvento()
+        public IEnumerable<Evento> GetEvento(string nombre, string precio)
         {
+            if (String.IsNullOrEmpty(nombre))
+            {
+                _context.Evento.Where(s=>s.nombre.Contains(nombre));
+            }
+            if(String.IsNullOrEmpty(precio))
+            {
+                _context.Evento.Where(s => s.precio.Equals(precio));
+            }
             return _context.Evento.ToList();
         }
 
