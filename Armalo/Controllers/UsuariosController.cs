@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Armalo.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Armalo;
+
 
 namespace Armalo.Controllers
 {
@@ -16,25 +18,34 @@ namespace Armalo.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly ArmaloContext _context;
+        
 
         public UsuariosController(ArmaloContext context)
         {
+            
             _context = context;
+            
+           
         }
 
         // GET: api/Usuarios
         [HttpGet]
+       
         public IEnumerable<Usuarios> GetUsuarios()
         {
+            
             return _context.Usuarios.ToList();
+            
         }
 
         // GET: api/Usuarios/5
         [HttpGet("{id}")]
+        
         public async Task<IActionResult> GetUsuarios([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
+
                 return BadRequest(ModelState);
             }
 

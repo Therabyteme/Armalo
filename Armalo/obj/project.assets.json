@@ -37,6 +37,15 @@
           "lib/net45/EntityFramework.dll": {}
         }
       },
+      "Microsoft.AspNet.Cors/5.2.6": {
+        "type": "package",
+        "compile": {
+          "lib/net45/System.Web.Cors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Cors.dll": {}
+        }
+      },
       "Microsoft.AspNet.Identity.Core/2.2.2": {
         "type": "package",
         "compile": {
@@ -85,6 +94,31 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/5.2.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.6"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Cors/5.2.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Cors": "5.2.6",
+          "Microsoft.AspNet.WebApi.Core": "[5.2.6, 5.3.0)"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.Cors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.Cors.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.1.1": {
@@ -4819,10 +4853,11 @@
       ]
     },
     "EntityFramework/6.2.0": {
-      "sha512": "ptGyXOf26qLrtn+2doAmylIlCxOnBJANwlyyLrXDmqIk9O18IzLWHyxDwwAyhgXkxmbiaA0WNpRy67WRReInBw==",
+      "sha512": "7u/Xw6dnODaoB8opNC/Uz8nT/LKOxsvJhObYU+m0CErCXdOsyTC1MZwqQoam8lMehLTxBoMBewvWoOQUBaUKsQ==",
       "type": "package",
       "path": "entityframework/6.2.0",
       "files": [
+        ".signature.p7s",
         "content/net40/App.config.transform",
         "content/net40/Web.config.transform",
         "entityframework.6.2.0.nupkg.sha512",
@@ -4843,6 +4878,17 @@
         "tools/init.ps1",
         "tools/install.ps1",
         "tools/migrate.exe"
+      ]
+    },
+    "Microsoft.AspNet.Cors/5.2.6": {
+      "sha512": "+UR2ucML7OSzE1xB8/NKxwq85dikwxhmjN0tuMrRxySCeiRICrcnRjagQYWeq6GAM2m5pTWNV1gn+E9ig9hwNg==",
+      "type": "package",
+      "path": "microsoft.aspnet.cors/5.2.6",
+      "files": [
+        ".signature.p7s",
+        "lib/net45/System.Web.Cors.dll",
+        "microsoft.aspnet.cors.5.2.6.nupkg.sha512",
+        "microsoft.aspnet.cors.nuspec"
       ]
     },
     "Microsoft.AspNet.Identity.Core/2.2.2": {
@@ -4895,6 +4941,31 @@
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
         "microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Core/5.2.6": {
+      "sha512": "8UiHr2VkrpwDCwXaXea8pNaR2zvJ3HYwsmWmkTFY1lEB2u4eFnL+aM+/GJK91Ud3KQ7Xse+Vysvj/UalM3IlmA==",
+      "type": "package",
+      "path": "microsoft.aspnet.webapi.core/5.2.6",
+      "files": [
+        ".signature.p7s",
+        "Content/web.config.transform",
+        "lib/net45/System.Web.Http.dll",
+        "lib/net45/System.Web.Http.xml",
+        "microsoft.aspnet.webapi.core.5.2.6.nupkg.sha512",
+        "microsoft.aspnet.webapi.core.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Cors/5.2.6": {
+      "sha512": "Dn0hWJwZL8oND32CdD8Bi7Xb4cm9Jr9F4TaruGRPiV1DhP12gijYHy5syAqMIRn7jwiE5wOpIH/yA/vhPV09gQ==",
+      "type": "package",
+      "path": "microsoft.aspnet.webapi.cors/5.2.6",
+      "files": [
+        ".signature.p7s",
+        "lib/net45/System.Web.Http.Cors.dll",
+        "lib/net45/System.Web.Http.Cors.xml",
+        "microsoft.aspnet.webapi.cors.5.2.6.nupkg.sha512",
+        "microsoft.aspnet.webapi.cors.nuspec"
       ]
     },
     "Microsoft.AspNetCore/2.1.1": {
@@ -12596,6 +12667,7 @@
       "EntityFramework >= 6.2.0",
       "Microsoft.AspNet.Identity.EntityFramework >= 2.2.2",
       "Microsoft.AspNet.Identity.Owin >= 2.2.2",
+      "Microsoft.AspNet.WebApi.Cors >= 5.2.6",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.Owin >= 4.0.0",
@@ -12606,23 +12678,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Brandon\\.nuget\\packages\\": {},
+    "C:\\Users\\Jose Santiago\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.1.2",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brandon\\armalo\\[armalo]\\Armalo\\Armalo.csproj",
+      "projectUniqueName": "C:\\Users\\Jose Santiago\\Desktop\\Files\\Developer\\armalo-api\\Armalo\\Armalo.csproj",
       "projectName": "Armalo",
-      "projectPath": "C:\\Users\\Brandon\\armalo\\[armalo]\\Armalo\\Armalo.csproj",
-      "packagesPath": "C:\\Users\\Brandon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brandon\\armalo\\[armalo]\\Armalo\\obj\\",
+      "projectPath": "C:\\Users\\Jose Santiago\\Desktop\\Files\\Developer\\armalo-api\\Armalo\\Armalo.csproj",
+      "packagesPath": "C:\\Users\\Jose Santiago\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jose Santiago\\Desktop\\Files\\Developer\\armalo-api\\Armalo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Brandon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jose Santiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12665,6 +12737,10 @@
           "Microsoft.AspNet.Identity.Owin": {
             "target": "Package",
             "version": "[2.2.2, )"
+          },
+          "Microsoft.AspNet.WebApi.Cors": {
+            "target": "Package",
+            "version": "[5.2.6, )"
           },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
@@ -12721,6 +12797,16 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Cors 5.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Cors",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Identity.Core",
       "targetGraphs": [
@@ -12743,6 +12829,26 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.Identity.Owin 2.2.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Identity.Owin",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Cors 5.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Cors",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]

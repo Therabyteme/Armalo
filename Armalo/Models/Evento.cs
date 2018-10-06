@@ -16,6 +16,9 @@ namespace Armalo.Models
         public int? IdLista { get; set; }
         public int? IdOrg { get; set; }
         public string Ubicacion { get; set; }
+        public string nombre { get; set; }
+        public int precio { get; set; }
+        public string location { get; set; }
         public int? Tipo { get; set; }
         public int CupoMax { get; set; }
         public int? CupoOcu { get; set; }

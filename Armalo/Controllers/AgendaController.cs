@@ -22,6 +22,7 @@ namespace Armalo.Controllers
 
         // GET: api/Agenda
         [HttpGet]
+        
         public IEnumerable<Agenda> GetAgenda()
         {
             return _context.Agenda;
