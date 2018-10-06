@@ -23,7 +23,7 @@ namespace Armalo.Models
         public string Estado { get; set; }
         public int? Agenda { get; set; }
         public int Staff { get; set; }
-
+        public string Nombre { get; set; }
         public Agenda AgendaNavigation { get; set; }
         public ListaDeAsistentes IdListaNavigation { get; set; }
         public Usuarios IdOrgNavigation { get; set; }
@@ -31,5 +31,7 @@ namespace Armalo.Models
         public ICollection<HistoriaDeEventosOrg> HistoriaDeEventosOrg { get; set; }
         public ICollection<HistoriaDeEventosUsr> HistoriaDeEventosUsr { get; set; }
         public ICollection<Publicidad> Publicidad { get; set; }
+        public string inicio { get; set; }
+        public string fin { get; set; }
     }
 }
