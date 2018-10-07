@@ -13,6 +13,7 @@ namespace Armalo.Models
         public int IdLista { get; set; }
         public int? IdUsr { get; set; }
         public int IdEvent { get; set; }
+        public string nombre { get; set; }
 
         public ICollection<Evento> Evento { get; set; }
     }
