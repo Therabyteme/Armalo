@@ -21,6 +21,7 @@ namespace Armalo.Models
         public virtual DbSet<Publicidad> Publicidad { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +33,25 @@ namespace Armalo.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Items>(entity =>
+            {
+                entity.HasKey(e => e.IdItem);
+
+                entity.ToTable("items");
+
+                entity.Property(e => e.IdAgenda)
+                    .HasColumnName("id_agenda")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdItem)
+                    .HasColumnName("ID_ITEM")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Actividad)
+                    .IsRequired()
+                    .HasColumnType("varchar(45)");
+            });
             modelBuilder.Entity<Agenda>(entity =>
             {
                 entity.HasKey(e => e.IdAgenda);
@@ -41,6 +61,9 @@ namespace Armalo.Models
                 entity.Property(e => e.IdAgenda)
                     .HasColumnName("id_agenda")
                     .HasColumnType("int(11)");
+
+                entity.HasMany(e => e.Item)
+                       .WithOne();
 
                 entity.Property(e => e.Eventos)
                     .IsRequired()
@@ -71,6 +94,11 @@ namespace Armalo.Models
 
                 entity.Property(e => e.Agenda).HasColumnType("int(11)");
 
+                entity.Property(e => e.fin).HasColumnType("time");
+
+                entity.Property(e => e.inicio).HasColumnType("time");
+
+
                 entity.Property(e => e.CupoMax)
                     .HasColumnName("CUPO_MAX")
                     .HasColumnType("int(11)");
@@ -99,7 +127,12 @@ namespace Armalo.Models
 
                 entity.Property(e => e.Tipo).HasColumnType("int(11)");
 
-                entity.Property(e => e.Ubicacion).HasColumnType("varchar(45)");
+                entity.Property(e => e.Precio).HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre).HasColumnType("varchar(45)");
+
+
+                entity.Property(e => e.location).HasColumnType("varchar(45)");
 
                 entity.HasOne(d => d.AgendaNavigation)
                     .WithMany(p => p.Evento)

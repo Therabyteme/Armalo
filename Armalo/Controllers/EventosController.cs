@@ -26,13 +26,13 @@ namespace Armalo.Controllers
         [HttpGet]
         public IEnumerable<Evento> GetEvento(string nombre, string precio)
         {
-            if (String.IsNullOrEmpty(nombre))
+            if (!String.IsNullOrEmpty(nombre))
             {
-                _context.Evento.Where(s=>s.nombre.Contains(nombre));
+                _context.Evento.Where(s=>s.Nombre.Contains(nombre));
             }
-            if(String.IsNullOrEmpty(precio))
+            if(!String.IsNullOrEmpty(precio))
             {
-                _context.Evento.Where(s => s.precio.Equals(precio));
+                _context.Evento.Where(s => s.Precio.Equals(precio));
             }
             return _context.Evento.ToList();
         }
