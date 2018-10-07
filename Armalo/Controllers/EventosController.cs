@@ -9,22 +9,32 @@ using Armalo.Models;
 
 namespace Armalo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/evento")]
     [ApiController]
-    public class EventosController : ControllerBase
+    public class Database : ControllerBase
     {
         private readonly ArmaloContext _context;
 
-        public EventosController(ArmaloContext context)
+        public Database(ArmaloContext context)
         {
             _context = context;
         }
 
+       
+
         // GET: api/Eventos
         [HttpGet]
-        public IEnumerable<Evento> GetEvento()
+        public IEnumerable<Evento> GetEvento(string nombre, string precio)
         {
-            return _context.Evento;
+            if (String.IsNullOrEmpty(nombre))
+            {
+                _context.Evento.Where(s=>s.nombre.Contains(nombre));
+            }
+            if(String.IsNullOrEmpty(precio))
+            {
+                _context.Evento.Where(s => s.precio.Equals(precio));
+            }
+            return _context.Evento.ToList();
         }
 
         // GET: api/Eventos/5
