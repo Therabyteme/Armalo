@@ -13,7 +13,7 @@ namespace Armalo.Models
         public int IdAgenda { get; set; }
         public string Eventos { get; set; }
 
-        public ICollection<Item> Items { get; set; }
+        public ICollection<Items> Item { get; set; }
         public ICollection<Evento> Evento { get; set; }
     }
 }

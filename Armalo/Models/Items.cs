@@ -3,16 +3,15 @@ using System.Collections.Generic;
 
 namespace Armalo.Models
 {
-    public partial class Item
+    public partial class Items
     {
-        public Item()
+        public Items()
         {
-            Agendas = new HashSet<Agenda>();
         }
 
         public int IdItem { get; set; }
+        public int IdAgenda { get; set; }
         public string Actividad { get; set; }
 
-        public ICollection<Agenda> Agendas { get; set; }
     }
 }
