@@ -25,6 +25,7 @@ namespace Armalo.Models
         public int? IdAgenda { get; set; }
         public int Staff { get; set; }
         public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public Agenda AgendaNavigation { get; set; }
         public ListaDeAsistentes IdListaNavigation { get; set; }
         public ICollection<EventoTags> EventoTags { get; set; }

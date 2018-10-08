@@ -148,6 +148,10 @@ namespace Armalo.Models
 
                 entity.Property(e => e.inicio).HasColumnType("time");
 
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("Descripcion")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
                 entity.Property(e => e.CupoMax)
                     .HasColumnName("CUPO_MAX")
