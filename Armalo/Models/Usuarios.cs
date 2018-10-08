@@ -9,10 +9,10 @@ namespace Armalo.Models
         {
             Evento = new HashSet<Evento>();
             Publicidad = new HashSet<Publicidad>();
-            Staff = new HashSet<Staff>();
         }
 
         public int IdUsr { get; set; }
+        public int? IdStaff { get; set; }
         public string Resume { get; set; }
         public int TipoUsr { get; set; }
         public string NombreUsr { get; set; }
@@ -21,6 +21,5 @@ namespace Armalo.Models
 
         public ICollection<Evento> Evento { get; set; }
         public ICollection<Publicidad> Publicidad { get; set; }
-        public ICollection<Staff> Staff { get; set; }
     }
 }

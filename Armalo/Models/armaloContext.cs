@@ -322,22 +322,11 @@ namespace Armalo.Models
 
                 entity.ToTable("staff");
 
-                entity.HasIndex(e => e.IdUsr)
-                    .HasName("Integrantes_idx");
-
                 entity.Property(e => e.IdStaff)
                     .HasColumnName("ID_STAFF")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.IdUsr)
-                    .HasColumnName("ID_USR")
-                    .HasColumnType("int(11)");
-
-                entity.HasOne(d => d.IdUsrNavigation)
-                    .WithMany(p => p.Staff)
-                    .HasForeignKey(d => d.IdUsr)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Integrantes");
+                entity.HasMany(s => s.Usuarios);
             });
 
             modelBuilder.Entity<Usuarios>(entity =>
@@ -348,6 +337,10 @@ namespace Armalo.Models
 
                 entity.Property(e => e.IdUsr)
                     .HasColumnName("ID_USR")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdStaff)
+                    .HasColumnName("ID_STAFF")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Correo)

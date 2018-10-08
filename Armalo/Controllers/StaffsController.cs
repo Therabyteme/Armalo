@@ -24,7 +24,7 @@ namespace Armalo.Controllers
         [HttpGet]
         public IEnumerable<Staff> GetStaff()
         {
-            return _context.Staff;
+            return _context.Staff.Include(s => s.Usuarios).ToList(); 
         }
 
         // GET: api/Staffs/5
@@ -36,7 +36,7 @@ namespace Armalo.Controllers
                 return BadRequest(ModelState);
             }
 
-            var staff = await _context.Staff.FindAsync(id);
+            var staff = await _context.Staff.Include(s => s.Usuarios).FirstOrDefaultAsync(s => s.IdStaff == id);
 
             if (staff == null)
             {
