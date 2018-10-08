@@ -34,7 +34,10 @@ namespace Armalo.Controllers
             {
                 _context.Evento.Where(s => s.Precio.Equals(precio));
             }
-            return _context.Evento.ToList();
+            return _context.Evento
+                .Include(e => e.EventoTags)
+                .Include(e => e.AgendaNavigation)
+                .Include(e => e.retroAlimentaciones).ToList();
         }
 
         // GET: api/Eventos/5

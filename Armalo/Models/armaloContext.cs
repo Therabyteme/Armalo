@@ -22,6 +22,10 @@ namespace Armalo.Models
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<Tags> Tags { get; set; }
+        public virtual DbSet<RetroAlimentacion> RetroAlimentaciones { get; set; }
+        public virtual DbSet<EventoTags> EventoTags { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -62,12 +66,57 @@ namespace Armalo.Models
                     .HasColumnName("id_agenda")
                     .HasColumnType("int(11)");
 
-                entity.HasMany(e => e.Item)
-                       .WithOne();
+                entity.HasMany(e => e.Item);
+            });
 
-                entity.Property(e => e.Eventos)
+            modelBuilder.Entity<RetroAlimentacion>(entity => {
+                entity.HasKey(e => e.Id);
+
+                entity.ToTable("retro_alimentacion");
+
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("Descripcion")
                     .IsRequired()
-                    .HasColumnType("varchar(5000)");
+                    .HasColumnType("TEXT");
+
+                entity.Property(e => e.IdEvent)
+                    .HasColumnName("id_evento")
+                    .HasColumnType("int(11)");
+
+
+            });
+
+            modelBuilder.Entity<Tags>(entity => {
+                entity.HasKey(e => e.Id);
+
+                entity.ToTable("Tags");
+
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("Descripcion")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
+
+                entity.Property(e => e.id_evento)
+                     .HasColumnName("id_evento")
+                     .HasColumnType("int(11)");
+            });
+
+            modelBuilder.Entity<EventoTags>(entity => {
+                entity.HasKey(et => new { et.IdEvent, et.IdTag });
+
+                entity.ToTable("evento_tags");
+
+                entity.Property(et => et.IdTag)
+                    .HasColumnName("ID_TAG")
+                    .HasColumnType("int(11)");
+
+                entity.Property(et => et.IdEvent)
+                    .HasColumnName("ID_EVENTO")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(et => et.tag)
+                    .WithMany(t => t.EventoTags)
+                    .HasForeignKey(et => et.IdTag);
             });
 
             modelBuilder.Entity<Evento>(entity =>
@@ -76,7 +125,7 @@ namespace Armalo.Models
 
                 entity.ToTable("evento");
 
-                entity.HasIndex(e => e.Agenda)
+                entity.HasIndex(e => e.IdAgenda)
                     .HasName("Agenda_idx");
 
                 entity.HasIndex(e => e.IdLista)
@@ -92,7 +141,8 @@ namespace Armalo.Models
                     .HasColumnName("ID_EVENT")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Agenda).HasColumnType("int(11)");
+                entity.Property(e => e.IdAgenda)
+                .HasColumnName("Agenda").HasColumnType("int(11)");
 
                 entity.Property(e => e.fin).HasColumnType("time");
 
@@ -134,10 +184,7 @@ namespace Armalo.Models
 
                 entity.Property(e => e.location).HasColumnType("varchar(45)");
 
-                entity.HasOne(d => d.AgendaNavigation)
-                    .WithMany(p => p.Evento)
-                    .HasForeignKey(d => d.Agenda)
-                    .HasConstraintName("Agenda");
+                entity.HasOne(d => d.AgendaNavigation);
 
                 entity.HasOne(d => d.IdListaNavigation)
                     .WithMany(p => p.Evento)
@@ -154,6 +201,8 @@ namespace Armalo.Models
                     .HasForeignKey(d => d.Staff)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("staff");
+
+                entity.HasMany(e => e.retroAlimentaciones);
             });
 
             modelBuilder.Entity<HistoriaDeEventosOrg>(entity =>

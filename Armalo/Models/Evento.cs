@@ -22,11 +22,13 @@ namespace Armalo.Models
         public int? CupoOcu { get; set; }
         public DateTime? Fecha { get; set; }
         public string Estado { get; set; }
-        public int? Agenda { get; set; }
+        public int? IdAgenda { get; set; }
         public int Staff { get; set; }
         public string Nombre { get; set; }
         public Agenda AgendaNavigation { get; set; }
         public ListaDeAsistentes IdListaNavigation { get; set; }
+        public ICollection<EventoTags> EventoTags { get; set; }
+        public ICollection<RetroAlimentacion> retroAlimentaciones {get; set;}
         public Usuarios IdOrgNavigation { get; set; }
         public Staff StaffNavigation { get; set; }
         public ICollection<HistoriaDeEventosOrg> HistoriaDeEventosOrg { get; set; }
