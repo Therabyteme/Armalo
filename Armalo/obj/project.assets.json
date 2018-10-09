@@ -4853,11 +4853,10 @@
       ]
     },
     "EntityFramework/6.2.0": {
-      "sha512": "7u/Xw6dnODaoB8opNC/Uz8nT/LKOxsvJhObYU+m0CErCXdOsyTC1MZwqQoam8lMehLTxBoMBewvWoOQUBaUKsQ==",
+      "sha512": "ptGyXOf26qLrtn+2doAmylIlCxOnBJANwlyyLrXDmqIk9O18IzLWHyxDwwAyhgXkxmbiaA0WNpRy67WRReInBw==",
       "type": "package",
       "path": "entityframework/6.2.0",
       "files": [
-        ".signature.p7s",
         "content/net40/App.config.transform",
         "content/net40/Web.config.transform",
         "entityframework.6.2.0.nupkg.sha512",
@@ -12678,23 +12677,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jose Santiago\\.nuget\\packages\\": {},
+    "C:\\Users\\Brandon\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.1.2",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jose Santiago\\Desktop\\Files\\Developer\\armalo-api\\Armalo\\Armalo.csproj",
+      "projectUniqueName": "C:\\Users\\Brandon\\armalo\\new\\armalo\\Armalo\\Armalo.csproj",
       "projectName": "Armalo",
-      "projectPath": "C:\\Users\\Jose Santiago\\Desktop\\Files\\Developer\\armalo-api\\Armalo\\Armalo.csproj",
-      "packagesPath": "C:\\Users\\Jose Santiago\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jose Santiago\\Desktop\\Files\\Developer\\armalo-api\\Armalo\\obj\\",
+      "projectPath": "C:\\Users\\Brandon\\armalo\\new\\armalo\\Armalo\\Armalo.csproj",
+      "packagesPath": "C:\\Users\\Brandon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Brandon\\armalo\\new\\armalo\\Armalo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jose Santiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Brandon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

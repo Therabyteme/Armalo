@@ -34,5 +34,8 @@ namespace Armalo.Models
         public ICollection<Publicidad> Publicidad { get; set; }
         public TimeSpan inicio { get; set; }
         public TimeSpan fin { get; set; }
+        public int flag { get; set; }
+        public string Imagen { get; set; }
+
     }
 }

@@ -24,7 +24,7 @@ namespace Armalo.Controllers
 
         // GET: api/Eventos
         [HttpGet]
-        public IEnumerable<Evento> GetEvento(string nombre, string precio)
+        public IEnumerable<Evento> GetEvento(string nombre, string precio, string flag)
         {
             if (!String.IsNullOrEmpty(nombre))
             {
@@ -33,6 +33,10 @@ namespace Armalo.Controllers
             if(!String.IsNullOrEmpty(precio))
             {
                 _context.Evento.Where(s => s.Precio.Equals(precio));
+            }
+            if(!String.IsNullOrEmpty(flag))
+            {
+                _context.Evento.Where(s => s.flag.Equals(flag));
             }
             return _context.Evento.ToList();
         }

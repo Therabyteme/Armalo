@@ -18,7 +18,7 @@ namespace Armalo.Models
         public string NombreUsr { get; set; }
         public string Pass { get; set; }
         public string Correo { get; set; }
-
+        
         public ICollection<Evento> Evento { get; set; }
         public ICollection<Publicidad> Publicidad { get; set; }
         public ICollection<Staff> Staff { get; set; }
