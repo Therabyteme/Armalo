@@ -36,6 +36,7 @@ namespace Armalo.Models
         public TimeSpan fin { get; set; }
         public int flag { get; set; }
         public string Imagen { get; set; }
+        public string Descripcion { get; set; }
 
     }
 }
