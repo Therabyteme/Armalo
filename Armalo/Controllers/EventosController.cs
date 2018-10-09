@@ -94,6 +94,38 @@ namespace Armalo.Controllers
             return NoContent();
         }
 
+        // PUT: api/Eventos/5/feedback
+        [HttpPost("{id}/feedback")]
+        public async Task<IActionResult> Feedback([FromRoute] int id, [FromBody] RetroAlimentacion feedback)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            
+
+            _context.Entry(feedback).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EventoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         // POST: api/Eventos
         [HttpPost]
         public async Task<IActionResult> PostEvento([FromBody] Evento evento)
