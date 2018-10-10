@@ -7,10 +7,10 @@ namespace Armalo.Models
 {
     public class Interaccion
     {
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
+        public int Id_Evento { get; set; }
+        public string Pregunta { get; set; }
 
-        public int IdEvent { get; set; }
+        
 
     }
 }

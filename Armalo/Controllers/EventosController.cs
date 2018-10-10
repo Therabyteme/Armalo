@@ -155,8 +155,8 @@ namespace Armalo.Controllers
 
             return NoContent();
         }
-        [HttpPut("{id}/feedback")]
-        public async Task<IActionResult> Feedback([FromRoute] int id, [FromBody] RetroAlimentacion feedback)
+        [HttpPut("{id}/interaccion")]
+        public async Task<IActionResult> Interaccion([FromRoute] Interaccion interaccion,int id)
         {
             if (!ModelState.IsValid)
             {
@@ -165,7 +165,7 @@ namespace Armalo.Controllers
 
             
 
-            _context.Entry(feedback).State = EntityState.Modified;
+            _context.Entry(interaccion).State = EntityState.Modified;
 
             try
             {
