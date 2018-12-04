@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Armalo.Models;
 
 namespace Armalo.Models
 {
@@ -15,6 +16,7 @@ namespace Armalo.Models
 
         public virtual DbSet<Agenda> Agenda { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
+        
         public virtual DbSet<HistoriaDeEventosOrg> HistoriaDeEventosOrg { get; set; }
         public virtual DbSet<HistoriaDeEventosUsr> HistoriaDeEventosUsr { get; set; }
         public virtual DbSet<ListaDeAsistentes> ListaDeAsistentes { get; set; }
@@ -22,7 +24,6 @@ namespace Armalo.Models
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Items> Items { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -316,6 +317,11 @@ namespace Armalo.Models
                     .HasColumnName("TipoUSR")
                     .HasColumnType("int(11)");
             });
+          
+          
+       
         }
+
+        public DbSet<Armalo.Models.Interaccion> Interaccion { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Armalo.Models
             HistoriaDeEventosOrg = new HashSet<HistoriaDeEventosOrg>();
             HistoriaDeEventosUsr = new HashSet<HistoriaDeEventosUsr>();
             Publicidad = new HashSet<Publicidad>();
+
         }
 
         public int IdEvent { get; set; }
@@ -37,6 +38,7 @@ namespace Armalo.Models
         public int flag { get; set; }
         public string Imagen { get; set; }
         public string Descripcion { get; set; }
+        
 
     }
 }
