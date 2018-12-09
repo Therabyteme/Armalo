@@ -24,6 +24,7 @@ namespace Armalo.Models
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<Interaccion> Interaccion { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -318,10 +319,29 @@ namespace Armalo.Models
                     .HasColumnType("int(11)");
             });
           
-          
+           modelBuilder.Entity<Interaccion>(entity =>
+            {
+                entity.HasKey(e => e.idinteraccion);
+                
+                entity.ToTable("interaccion");
+
+                entity.Property(e => e.idinteraccion)
+                    .HasColumnName("interaccionid")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.id_event)
+                    .HasColumnName("id_event")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.interaccion)
+                    .HasColumnName("interaccion")
+                    .HasColumnType("varchar(2000)");
+            });
        
         }
 
-        public DbSet<Armalo.Models.Interaccion> Interaccion { get; set; }
+        
     }
 }

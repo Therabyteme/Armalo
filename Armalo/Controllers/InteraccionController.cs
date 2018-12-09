@@ -55,7 +55,7 @@ namespace Armalo.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != interaccion.id)
+            if (id != interaccion.idinteraccion)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Armalo.Controllers
             _context.Interaccion.Add(interaccion);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetInteraccion", new { id = interaccion.id }, interaccion);
+            return CreatedAtAction("GetInteraccion", new { idinteraccion = interaccion.idinteraccion }, interaccion);
         }
 
         // DELETE: api/Interaccion/5
@@ -119,7 +119,7 @@ namespace Armalo.Controllers
 
         private bool InteraccionExists(int? id)
         {
-            return _context.Interaccion.Any(e => e.id == id);
+            return _context.Interaccion.Any(e => e.idinteraccion == id);
         }
     }
 }
