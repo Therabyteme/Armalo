@@ -74,11 +74,35 @@ namespace Armalo.Models
 
                 entity.ToTable("retro_alimentacion");
 
+                entity.Property(e => e.agenda)
+                    .HasColumnName("agenda")
+                    .IsRequired()
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.general)
+                    .HasColumnName("general")
+                    .IsRequired()
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.organizacion)
+                    .HasColumnName("organizacion")
+                    .IsRequired()
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.organizadores)
+                    .HasColumnName("organizadores")
+                    .IsRequired()
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.puntualidad)
+                    .HasColumnName("puntualidad")
+                    .IsRequired()
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.Descripcion)
                     .HasColumnName("Descripcion")
                     .IsRequired()
                     .HasColumnType("TEXT");
-
                 entity.Property(e => e.IdEvent)
                     .HasColumnName("id_evento")
                     .HasColumnType("int(11)");

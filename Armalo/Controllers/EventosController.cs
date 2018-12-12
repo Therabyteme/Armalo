@@ -124,16 +124,51 @@ namespace Armalo.Controllers
 
             return NoContent();
         }
-        // PUT: api/Eventos/5/feedback
-        [HttpPut("{id}/feedback")]
-        public async Task<IActionResult> Feedback([FromRoute] int id, [FromBody] RetroAlimentacion feedback)
+        // GET: api/Eventos/5
+        [HttpGet("{id}/feedbacks")]
+        public async Task<IActionResult> GetFeedbacks([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var list = _context.RetroAlimentaciones
+                .Where(s => s.IdEvent.Equals(id))
+                .ToList();
 
+            if (list == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(list);
+        }
+        // POST: api/Eventos/5/feedback
+        [HttpPost("{id}/feedback")]
+        public async Task<IActionResult> Feedback([FromRoute] int id, [FromBody] RetroAlimentacion feedback)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.RetroAlimentaciones.Add(feedback);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetFeedbacks", new { id = feedback.Id }, feedback);
+           
+        }
+        // PUT: api/Eventos/5/feedback
+        [HttpPut("{id}/feedback/{idFeedback}")]
+        public async Task<IActionResult> UpdateFeedback([FromRoute] int id, [FromRoute] int idFeedback,[FromBody] RetroAlimentacion feedback)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            feedback.IdEvent = id;
 
             _context.Entry(feedback).State = EntityState.Modified;
 
@@ -143,7 +178,7 @@ namespace Armalo.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EventoExists(id))
+                if (!FeedbackExists(id))
                 {
                     return NotFound();
                 }
@@ -225,6 +260,11 @@ namespace Armalo.Controllers
         private bool EventoExists(int id)
         {
             return _context.Evento.Any(e => e.IdEvent == id);
+        }
+
+        private bool FeedbackExists(int id)
+        {
+            return _context.RetroAlimentaciones.Any(e => e.Id == id);
         }
     }
 }
